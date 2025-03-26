@@ -1,0 +1,32 @@
+/spell-practice-app/  <-- Root of your GitHub Repository
+|
+|-- index.html             <-- Main entry point for the app (served by GitHub Pages)
+|
+|-- css/                   <-- Folder for CSS files
+|   |-- style.css          <-- Main stylesheet
+|   |-- reset.css          <-- Optional: CSS reset if needed
+|
+|-- js/                    <-- Folder for JavaScript files
+|   |-- script.js          <-- Main application logic (UI, interaction, error tracking)
+|   |-- api.js             <-- Optional: Module for handling calls to our serverless functions
+|   |-- ui.js              <-- Optional: Module for UI updates/DOM manipulation
+|
+|-- assets/                <-- Optional: For images, fonts, audio files, etc.
+|   |-- fonts/
+|   |-- images/
+|
+|-- api/                   <-- **For Vercel:** Serverless functions go here (e.g., /api/get-word.js)
+|   |-- get-word.js        # Example Vercel function (Node.js)
+|   |-- get-suggestions.js # Example Vercel function (Node.js)
+|
+|-- netlify/               <-- **For Netlify:** Contains functions folder and config
+|   |-- functions/         <-- Serverless functions go here (e.g., /netlify/functions/get-word.js)
+|   |   |-- get-word.js    # Example Netlify function (Node.js)
+|   |   |-- get-suggestions.js # Example Netlify function (Node.js)
+|   |-- netlify.toml       <-- Netlify configuration file (specifies functions dir, build settings)
+|
+|-- .gitignore             <-- Specifies intentionally untracked files (e.g., node_modules, .env)
+|-- package.json           <-- If using Node.js for functions/build tools (defines dependencies)
+|-- package-lock.json      <-- Lockfile for Node.js dependencies
+|-- README.md              <-- Project description, setup instructions
+|-- vercel.json            <-- Optional: Vercel configuration file

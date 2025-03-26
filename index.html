@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Spelling Practice</title>
+
+    <!-- Link CSS (adjust path if needed, but this matches the dir plan) -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Optional: Link Google Fonts if specified in CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <header>
+        <!-- Optional: Logo or Title Area -->
+        <h1 class="logo">SpellAI</h1> 
+        <!-- Maybe add icons for settings, stats later -->
+    </header>
+
+    <main class="practice-area">
+
+        <div id="stats-display" class="stats">
+             <!-- Placeholder for WPM, Accuracy, Timer later -->
+             <div class="stat" id="timer">0:00</div>
+             <div class="stat" id="wpm">WPM: --</div>
+             <div class="stat" id="accuracy">Acc: --%</div>
+        </div>
+
+        <!-- This div will hold the words to be typed -->
+        <!-- JS will populate this with spans for each letter -->
+        <div id="word-container" class="word-line" aria-live="polite"> 
+            <!-- Example structure JS might create: -->
+            <!-- <span class="letter correct">w</span><span class="letter incorrect">o</span><span class="letter current">r</span><span class="letter">d</span> -->
+            Loading words... 
+        </div>
+
+        <!-- Hidden input field (or alternative method) to capture actual input -->
+        <!-- Using an off-screen input is a common technique -->
+        <input type="text" id="hidden-input" aria-label="Type here" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+        <div id="feedback-area" class="feedback">
+            <!-- Feedback messages (e.g., loading errors, maybe summary) -->
+        </div>
+
+        <div class="controls">
+             <!-- Buttons like Restart, Change Mode etc. can go here later -->
+             <button id="restart-button" title="Restart Test">Restart</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <!-- Optional: Links to GitHub, settings, etc. -->
+        <p>Created with AI Assistance</p>
+    </footer>
+
+    <!-- Link JavaScript -->
+    <!-- Load helper modules first if using them -->
+    <script type="module" src="js/script.js"></script> 
+    <script src="js/ui.js"></script>
+    <!-- Main script last -->
+    <script src="js/script.js"></script> 
+    <!-- If using ES6 Modules, do this instead: -->
+    <!-- <script type="module" src="js/script.js"></script> --> 
+
+</body>
+</html>

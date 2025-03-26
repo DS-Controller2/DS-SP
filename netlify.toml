@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/api/*"
+  to = "functions/get-word.js"
+  status = 200
+
+[[redirects]]
+  from = "/api/suggestions"
+  to = "functions/get-suggestions.js"
+  status = 200
