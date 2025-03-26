@@ -1,0 +1,248 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+/* --- CSS Variables (Theme Colors - based on Serika Dark) --- */
+:root {
+    --bg-color: #323437;
+    --text-color: #d1d0c5;
+    --sub-color: #646669;     /* Dim text, upcoming words */
+    --main-accent: #e2b714;  /* Yellow/gold for caret, highlights */
+    --error-color: #ca4754;   /* Red for errors */
+    --correct-color: #7cae5e; /* Optional green for correct feedback */
+    --caret-color: var(--main-accent);
+}
+
+/* --- Basic Reset & Body Styling --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Roboto Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem; /* Padding around the whole page */
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- Header / Top Bar --- */
+.top-bar {
+    width: 100%;
+    max-width: 1000px; /* Consistent width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 2rem;
+}
+
+.logo h1 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.settings-nav {
+    /* Style for settings buttons later */
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    width: 100%;
+    max-width: 1000px; /* Max width for content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Stats Display --- */
+.stats-display {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Space between stats */
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: var(--sub-color);
+}
+
+.stat {
+    min-width: 80px; /* Ensure some minimum width */
+    text-align: center;
+}
+
+/* --- Word Display Area --- */
+.word-line {
+    font-size: 2rem; /* Adjust as needed */
+    letter-spacing: 1px;
+    line-height: 1.5; /* Important for multi-line display */
+    margin-bottom: 2rem;
+    text-align: center; /* Center the line of words */
+    min-height: 3em; /* Reserve space to avoid layout shifts */
+    color: var(--sub-color); /* Default/upcoming word color */
+    transition: color 0.2s ease; /* Smooth transitions if needed */
+}
+
+.word-line .placeholder-text {
+    color: var(--sub-color);
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+/* Styles for spans JS will create */
+.word {
+    display: inline-block; /* Treat each word as a block */
+    margin-right: 1em; /* Space between words */
+    white-space: nowrap; /* Keep letters of a word together */
+}
+
+.letter {
+    display: inline-block; /* Allow styling individual letters */
+    transition: color 0.1s ease; /* Smooth color changes */
+    border-bottom: 2px solid transparent; /* Reserve space for error underline */
+    margin-bottom: -2px; /* Offset the border space */
+}
+
+/* Letter status styles (applied by JS) */
+.letter.correct {
+    color: var(--text-color); /* Fully typed correct letters */
+}
+
+.letter.incorrect {
+    color: var(--error-color); /* Incorrectly typed letters */
+    /* Optional: Underline incorrect letters */
+    /* border-bottom: 2px solid var(--error-color); */
+}
+
+/* Caret Simulation */
+.letter.current {
+    position: relative; /* Needed for absolute positioning of pseudo-elements */
+    /* Blinking caret using border */
+    border-left: 2px solid var(--caret-color);
+    margin-left: -2px; /* Overlap border without shifting letter */
+    animation: blink 1s infinite steps(1);
+}
+
+/* Blinking animation */
+@keyframes blink {
+    0%, 100% { border-left-color: var(--caret-color); }
+    50% { border-left-color: transparent; }
+}
+
+/* Alternative: Background caret (covers the letter slightly) */
+/*
+.letter.current::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background-color: var(--caret-color);
+    animation: blink 1s infinite steps(1);
+}
+@keyframes blink {
+    0%, 100% { background-color: var(--caret-color); }
+    50% { background-color: transparent; }
+}
+*/
+
+
+/* --- Hidden Input Field --- */
+.hidden-input {
+    position: absolute;
+    left: -9999px; /* Move way off-screen */
+    top: -9999px;
+    width: 1px; /* Minimal size */
+    height: 1px;
+    opacity: 0; /* Make invisible */
+    border: none;
+    padding: 0;
+    margin: 0;
+    /* We need it to be focusable, but not visible */
+}
+
+/* --- Feedback Messaging Area --- */
+.feedback-area {
+    min-height: 1.5em; /* Reserve space */
+    margin-bottom: 1rem;
+    color: var(--sub-color);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* --- Controls Area --- */
+.controls-area {
+    margin-top: 1rem; /* Space above buttons */
+}
+
+button {
+    background-color: var(--sub-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    padding: 0.6rem 1.2rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin: 0 0.5rem; /* Spacing around buttons */
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--main-accent);
+    color: var(--bg-color);
+}
+
+button:disabled {
+    background-color: #44464a;
+    color: var(--sub-color);
+    cursor: not-allowed;
+}
+
+/* --- Footer --- */
+.page-footer {
+    margin-top: auto; /* Push footer towards the bottom */
+    padding-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--sub-color);
+    text-align: center;
+}
+
+.page-footer a {
+    color: var(--sub-color);
+    text-decoration: none;
+}
+
+.page-footer a:hover {
+    color: var(--main-accent);
+    text-decoration: underline;
+}
+
+/* --- Media Queries (Basic Example) --- */
+@media (max-width: 768px) {
+    .word-line {
+        font-size: 1.5rem; /* Smaller font on mobile */
+        line-height: 1.6;
+        max-width: 95%; /* Allow text wrapping */
+    }
+
+    .stats-display {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .top-bar, .main-content {
+        max-width: 95%;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+}
